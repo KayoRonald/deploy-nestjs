@@ -10,7 +10,7 @@ async function bootstrap() {
   const logger = new Logger('Main');
   const app = await NestFactory.create(AppModule);
   const config = app.get<ConfigService>(ConfigService);
-  const port = config.get<number>('port');
+  // const port = config.get<number>('port');
   const document = SwaggerModule.createDocument(app, swaggerConfig);
 
   SwaggerModule.setup('api', app, document);
@@ -18,8 +18,8 @@ async function bootstrap() {
   app.useGlobalPipes(validationPipe);
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
-  await app.listen(port, () => {
-    logger.log(`Server listening port: ${port}`);
+  await app.listen(3000, () => {
+    logger.log(`Server listening port: 3000`);
   });
 }
 bootstrap();
